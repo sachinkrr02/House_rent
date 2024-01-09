@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:house/pages/details.dart';
-import 'package:house/pages/home.dart';
-import 'package:house/pages/register.dart';
+import 'package:house/pages/homepage/home.dart';
+import 'package:house/pages/login/login.dart';
 
-class Loginpage extends StatefulWidget {
-  const Loginpage({super.key});
+
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<Loginpage> createState() => _LoginpageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginpageState extends State<Loginpage> {
+class _SignupPageState extends State<SignupPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -29,12 +29,24 @@ class _LoginpageState extends State<Loginpage> {
           Align(
             alignment: Alignment.center,
             child: Text(
-              "Lets Signin into your account",
+              "Create Account",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
             ),
           ),
           SizedBox(
             height: 20,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Full Name",
+              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              prefixIcon: Icon(Icons.verified_user_outlined),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            ),
+          ),
+          SizedBox(
+            height: 10,
           ),
           TextField(
             controller: emailController,
@@ -47,7 +59,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           TextField(
             controller: passwordController,
@@ -59,15 +71,20 @@ class _LoginpageState extends State<Loginpage> {
                   OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             ),
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: TextButton(
-              onPressed: () {},
-              child: Text("Forgot your password?"),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Confirm Password",
+              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              prefixIcon: Icon(Icons.lock),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             ),
           ),
           SizedBox(
-            height: 0,
+            height: 20,
           ),
           ElevatedButton(
             onPressed: () {
@@ -75,7 +92,7 @@ class _LoginpageState extends State<Loginpage> {
                   context, MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Text(
-              "Sign In",
+              "Create Account",
               style: TextStyle(fontSize: 19, color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(backgroundColor: Colors.lightGreen),
@@ -84,27 +101,24 @@ class _LoginpageState extends State<Loginpage> {
             height: 25,
           ),
           SizedBox(
-            height: 10,
-          ),
-          SizedBox(
             height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Don't have an account?",
+                "Already have an account?",
                 style: TextStyle(fontSize: 16),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignupPage()),
+                    MaterialPageRoute(builder: (context) => Loginpage()),
                   );
                 },
                 child: Text(
-                  'Signup',
+                  'Sign In',
                   style: TextStyle(fontSize: 18, color: Colors.lightGreen),
                 ),
               )

@@ -1,0 +1,175 @@
+  //top estate agents
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       alignment: Alignment.centerLeft,
+              //       padding: EdgeInsets.only(left: 10),
+              //       child: Text(
+              //         "Top Estate Agents",
+              //         style:
+              //             TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              //       ),
+              //     ),
+              //     TextButton(
+              //       onPressed: () {},
+              //       child: Text("explore"),
+              //     ),
+              //   ],
+              // ),
+
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Row(
+              //     children: [
+              //       Container(
+              //         child: Column(
+              //           children: [
+              //             Container(
+              //               padding: EdgeInsets.all(4), // Border width
+              //               decoration: BoxDecoration(
+              //                   color: Color.fromRGBO(244, 244, 249, 1),
+              //                   shape: BoxShape.circle),
+              //               child: ClipOval(
+              //                 child: SizedBox.fromSize(
+              //                   size: Size.fromRadius(25), // Image radius
+              //                   child: Image.asset('assets/person.jpg',
+              //                       fit: BoxFit.cover),
+              //                 ),
+              //               ),
+              //             ),
+              //             Align(
+              //               alignment: Alignment.bottomCenter,
+              //               child: Text(
+              //                 "Amanda",
+              //                 style: TextStyle(fontSize: 14),
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 30,
+              //       ),
+              //       Container(
+              //         child: Column(
+              //           children: [
+              //             Container(
+              //               padding: EdgeInsets.all(4), // Border width
+              //               decoration: BoxDecoration(
+              //                   color: Color.fromRGBO(244, 244, 249, 1),
+              //                   shape: BoxShape.circle),
+              //               child: ClipOval(
+              //                 child: SizedBox.fromSize(
+              //                   size: Size.fromRadius(25), // Image radius
+              //                   child: Image.asset('assets/person.jpg',
+              //                       fit: BoxFit.cover),
+              //                 ),
+              //               ),
+              //             ),
+              //             Align(
+              //               alignment: Alignment.bottomCenter,
+              //               child: Text(
+              //                 "Samantha",
+              //                 style: TextStyle(fontSize: 14),
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 30,
+              //       ),
+              //       Container(
+              //         child: Column(
+              //           children: [
+              //             Container(
+              //               padding: EdgeInsets.all(4), // Border width
+              //               decoration: BoxDecoration(
+              //                   color: Color.fromRGBO(244, 244, 249, 1),
+              //                   shape: BoxShape.circle),
+              //               child: ClipOval(
+              //                 child: SizedBox.fromSize(
+              //                   size: Size.fromRadius(25), // Image radius
+              //                   child: Image.asset('assets/person.jpg',
+              //                       fit: BoxFit.cover),
+              //                 ),
+              //               ),
+              //             ),
+              //             Align(
+              //               alignment: Alignment.bottomCenter,
+              //               child: Text(
+              //                 "Andrew",
+              //                 style: TextStyle(fontSize: 14),
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 30,
+              //       ),
+              //       Container(
+              //         child: Column(
+              //           children: [
+              //             Container(
+              //               padding: EdgeInsets.all(4), // Border width
+              //               decoration: BoxDecoration(
+              //                   color: Color.fromRGBO(244, 244, 249, 1),
+              //                   shape: BoxShape.circle),
+              //               child: ClipOval(
+              //                 child: SizedBox.fromSize(
+              //                   size: Size.fromRadius(25), // Image radius
+              //                   child: Image.asset('assets/person.jpg',
+              //                       fit: BoxFit.cover),
+              //                 ),
+              //               ),
+              //             ),
+              //             Align(
+              //               alignment: Alignment.bottomCenter,
+              //               child: Text(
+              //                 "Anderson",
+              //                 style: TextStyle(fontSize: 14),
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 30,
+              //       ),
+              //       Container(
+              //         child: Column(
+              //           children: [
+              //             Container(
+              //               padding: EdgeInsets.all(4), // Border width
+              //               decoration: BoxDecoration(
+              //                   color: Color.fromRGBO(244, 244, 249, 1),
+              //                   shape: BoxShape.circle),
+              //               child: ClipOval(
+              //                 child: SizedBox.fromSize(
+              //                   size: Size.fromRadius(25), // Image radius
+              //                   child: Image.asset('assets/person.jpg',
+              //                       fit: BoxFit.cover),
+              //                 ),
+              //               ),
+              //             ),
+              //             Align(
+              //               alignment: Alignment.bottomCenter,
+              //               child: Text(
+              //                 "samantha",
+              //                 style: TextStyle(fontSize: 14),
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 30,
+              //       ),
+              //       SizedBox(
+              //         width: 30,
+              //       ),
+              //     ],
+              //   ),
+              // ),
