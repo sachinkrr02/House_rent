@@ -214,8 +214,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               child: Align(
                                 alignment: AlignmentDirectional(0, 0),
                                 child: FaIcon(
-                                  FontAwesomeIcons.lessThan,
-                                  color: Color(0xD2969FAD),
+                                  FontAwesomeIcons.arrowLeft,
+                                  color: Colors.white,
                                   size: 15,
                                 ),
                               ),

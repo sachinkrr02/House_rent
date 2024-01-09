@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:house/pages/home.dart';
-import 'package:house/pages/login.dart';
+import 'package:house/pages/login/otp.dart';
+import 'package:house/pages/login/register.dart';
+import 'package:house/pages/propertyDetails/details.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+class Loginpage extends StatefulWidget {
+  const Loginpage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<Loginpage> createState() => _LoginpageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _LoginpageState extends State<Loginpage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -28,7 +29,7 @@ class _SignupPageState extends State<SignupPage> {
           Align(
             alignment: Alignment.center,
             child: Text(
-              "Create Account",
+              "Lets Signin into your account",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
             ),
           ),
@@ -36,48 +37,12 @@ class _SignupPageState extends State<SignupPage> {
             height: 20,
           ),
           TextField(
-            decoration: InputDecoration(
-              hintText: "Full Name",
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              prefixIcon: Icon(Icons.verified_user_outlined),
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
             controller: emailController,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
-              hintText: "Email",
+              hintText: "Phone No.",
               contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              prefixIcon: Icon(Icons.email_outlined),
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              hintText: "Password",
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              prefixIcon: Icon(Icons.lock),
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Confirm Password",
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              prefixIcon: Icon(Icons.lock),
+              prefixIcon: Icon(Icons.phone_android_outlined),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             ),
@@ -85,13 +50,33 @@ class _SignupPageState extends State<SignupPage> {
           SizedBox(
             height: 20,
           ),
+          // TextField(
+          //   controller: passwordController,
+          //   decoration: InputDecoration(
+          //     hintText: "Password",
+          //     contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+          //     prefixIcon: Icon(Icons.lock),
+          //     border:
+          //         OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          //   ),
+          // ),
+          // Align(
+          //   alignment: Alignment.topRight,
+          //   child: TextButton(
+          //     onPressed: () {},
+          //     child: Text("Forgot your password?"),
+          //   ),
+          // ),
+          SizedBox(
+            height: 0,
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+                  context, MaterialPageRoute(builder: (context) => OTP()));
             },
             child: Text(
-              "Create Account",
+              "Sign In",
               style: TextStyle(fontSize: 19, color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(backgroundColor: Colors.lightGreen),
@@ -100,24 +85,27 @@ class _SignupPageState extends State<SignupPage> {
             height: 25,
           ),
           SizedBox(
+            height: 10,
+          ),
+          SizedBox(
             height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Already have an account?",
+                "Don't have an account?",
                 style: TextStyle(fontSize: 16),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Loginpage()),
+                    MaterialPageRoute(builder: (context) => SignupPage()),
                   );
                 },
                 child: Text(
-                  'Sign In',
+                  'Signup',
                   style: TextStyle(fontSize: 18, color: Colors.lightGreen),
                 ),
               )
