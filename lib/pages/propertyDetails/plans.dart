@@ -14,49 +14,72 @@ class _PlansState extends State<Plans> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(5.0), // here the desired height
-        child: AppBar(),
+        preferredSize: Size.fromHeight(40.0), // here the desired height
+        child: AppBar(
+          title: Text("Plans and Pricing"),
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Plans and Pricing",
+                "Scheduling",
+                style: TextStyle(fontSize: 33, fontWeight: FontWeight.w700),
+              ),
+              Text(
+                "Should be easy,",
+                style: TextStyle(fontSize: 33, fontWeight: FontWeight.w700),
+              ),
+              Text(
+                "Convenient",
                 style: TextStyle(
-                    fontSize: 30, color: Color.fromRGBO(37, 76, 105, 1)),
+                    fontSize: 33,
+                    fontWeight: FontWeight.w800,
+                    color: Color.fromRGBO(37, 76, 105, 1)),
               ),
               SizedBox(
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(25),
-                height: height * 0.3,
+                padding: EdgeInsets.all(20),
+                height: height * 0.35,
                 width: width,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(234, 234, 249, 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
+                    color: Color.fromRGBO(234, 234, 249, 1),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Color.fromRGBO(37, 76, 105, 1),
+                      width: 2,
+                    )),
+                child: Column(
                   children: [
-                    Image.asset(
-                      'assets/gold1.png',
-                      height: 130,
-                    ),
                     SizedBox(
                       width: 25,
                     ),
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Gold",
+                          "Silver",
                           style: TextStyle(
-                              fontSize: 35,
+                              fontSize: 25,
                               color: Color.fromRGBO(37, 76, 105, 1),
                               fontWeight: FontWeight.w700),
+                        ),
+                        Text(
+                          "\$1225",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Color.fromRGBO(37, 76, 105, 1),
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         Text(
                           "1 Listings",
@@ -72,13 +95,21 @@ class _PlansState extends State<Plans> {
                         ElevatedButton(
                           onPressed: () {},
                           child: Text(
-                            "Get Started",
+                            "Buy Now",
                             style: TextStyle(color: Colors.white),
                           ),
                           style: ElevatedButton.styleFrom(
+                              fixedSize: Size(300, 40),
                               shape: const RoundedRectangleBorder(),
                               backgroundColor: Colors.lightGreen),
-                        )
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'For individuals who want to start',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
                       ],
                     ),
                   ],
@@ -88,32 +119,41 @@ class _PlansState extends State<Plans> {
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(25),
-                height: height * 0.3,
+                padding: EdgeInsets.all(20),
+                height: height * 0.36,
                 width: width,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(234, 234, 249, 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
+                    color: Color.fromRGBO(234, 234, 249, 1),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Color.fromRGBO(37, 76, 105, 1),
+                      width: 2,
+                    )),
+                child: Column(
                   children: [
-                    Image.asset(
-                      'assets/silver.png',
-                      height: 130,
-                    ),
                     SizedBox(
                       width: 25,
                     ),
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Silver",
+                          "Gold",
                           style: TextStyle(
-                              fontSize: 35,
+                              fontSize: 25,
                               color: Color.fromRGBO(37, 76, 105, 1),
                               fontWeight: FontWeight.w700),
+                        ),
+                        Text(
+                          "\$1725",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Color.fromRGBO(37, 76, 105, 1),
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         Text(
                           "3 Listings",
@@ -129,13 +169,21 @@ class _PlansState extends State<Plans> {
                         ElevatedButton(
                           onPressed: () {},
                           child: Text(
-                            "Get Started",
+                            "Buy Now",
                             style: TextStyle(color: Colors.white),
                           ),
                           style: ElevatedButton.styleFrom(
+                              fixedSize: Size(300, 40),
                               shape: const RoundedRectangleBorder(),
                               backgroundColor: Colors.lightGreen),
-                        )
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'For individuals who want to start',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
                       ],
                     ),
                   ],
@@ -145,32 +193,41 @@ class _PlansState extends State<Plans> {
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(25),
-                height: height * 0.3,
+                padding: EdgeInsets.all(20),
+                height: height * 0.36,
                 width: width,
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(234, 234, 249, 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
+                    color: Color.fromRGBO(234, 234, 249, 1),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Color.fromRGBO(37, 76, 105, 1),
+                      width: 2,
+                    )),
+                child: Column(
                   children: [
-                    Image.asset(
-                      'assets/dimond.png',
-                      height: 130,
-                    ),
                     SizedBox(
                       width: 25,
                     ),
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Dimond",
+                          "Diamond",
                           style: TextStyle(
-                              fontSize: 35,
+                              fontSize: 25,
                               color: Color.fromRGBO(37, 76, 105, 1),
                               fontWeight: FontWeight.w700),
+                        ),
+                        Text(
+                          "\$2549",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Color.fromRGBO(37, 76, 105, 1),
+                              fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         Text(
                           "7 Listings",
@@ -186,12 +243,20 @@ class _PlansState extends State<Plans> {
                         ElevatedButton(
                           onPressed: () {},
                           child: Text(
-                            "Get Started",
+                            "Buy Now",
                             style: TextStyle(color: Colors.white),
                           ),
                           style: ElevatedButton.styleFrom(
+                              fixedSize: Size(300, 40),
                               shape: const RoundedRectangleBorder(),
                               backgroundColor: Colors.lightGreen),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'For individuals who want to start',
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                       ],
                     ),

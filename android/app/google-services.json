@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "625670328620",
+    "project_id": "fir-test-4daebb1",
+    "storage_bucket": "fir-test-4daebb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625670328620:android:c5cb7b552f69175ccf5c89",
+        "android_client_info": {
+          "package_name": "com.example.house"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4HCVpIpPEefUBeti-vQPZ3cvfnf7ldMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

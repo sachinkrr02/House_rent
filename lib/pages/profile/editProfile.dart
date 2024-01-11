@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:house/pages/profile/profilePage.dart';
+import 'package:mapbox_search/mapbox_search.dart';
 
 class editProfile extends StatefulWidget {
   const editProfile({super.key});
@@ -14,7 +16,12 @@ class _editProfileState extends State<editProfile> {
       appBar: AppBar(
         title: Center(child: Text('Edit Profile')),
         leading: CircleAvatar(
-          child: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+          child: IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (Context) => ProfilePage()));
+              },
+              icon: Icon(Icons.arrow_back)),
         ),
       ),
       body: SingleChildScrollView(
@@ -89,8 +96,8 @@ class _editProfileState extends State<editProfile> {
                         MaterialStatePropertyAll(Colors.lightGreen)),
                 onPressed: () {},
                 child: Text(
-                  "Choose Location",
-                  style: TextStyle(color: Colors.white),
+                  "Update details",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
             ],

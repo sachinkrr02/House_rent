@@ -198,7 +198,7 @@ class _ColorChangingRowState extends State<ColorChangingRow> {
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
-                color: _colorContainer5,
+                color: _colorContainer6,
               ),
             ),
           ),
