@@ -6,7 +6,7 @@ import 'package:house/pages/homepage/models/featureEstate.dart';
 import 'package:house/pages/homepage/models/salesModel.dart';
 import 'package:house/pages/homepage/sales.dart';
 import 'package:house/pages/homepage/toploctions..dart';
-import 'package:house/pages/profile/plans.dart';
+import 'package:house/pages/propertyDetails/plans.dart';
 import 'package:house/pages/profile/profilePage.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,10 +38,10 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(builder: (context) => Plans()));
                   },
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(5.0),
                     child: Icon(
-                      Icons.price_change_outlined,
-                      size: 18.0,
+                      Icons.price_check_outlined,
+                      size: 30.0,
                       color: Colors.black,
                     ),
                   ),
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              width: 10,
+              width: 20,
             ),
             Material(
               type: MaterialType.transparency,
@@ -65,10 +65,10 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(builder: (context) => ProfilePage()));
                   },
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(5.0),
                     child: Icon(
                       Icons.person_2_rounded,
-                      size: 18.0,
+                      size: 30,
                       color: Colors.black,
                     ),
                   ),
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+        padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -113,15 +113,13 @@ class _HomePageState extends State<HomePage> {
                     )),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
 
               TextField(
                 decoration: InputDecoration(
                   fillColor: Colors.white70,
-                  filled: true,
-                  suffixIcon: Icon(Icons.mic),
-                  hintText: "Search,House,Apartments,etc",
+                  hintText: "Search for Houses, Apartments, etc",
                   contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   prefixIcon: Icon(Icons.search_rounded),
                   border: OutlineInputBorder(
@@ -130,11 +128,14 @@ class _HomePageState extends State<HomePage> {
               ),
 
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Container(
                 height: 70,
                 child: menuOtions(),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Sales(
                 title: demo_data[1].title,
@@ -153,45 +154,102 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              featureEstate(),
-
-              // top locations
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "Top Locations",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text("explore"),
-                  ),
-                ],
-              ),
-              topLocations(),
               SizedBox(
                 height: 10,
+              ),
+              featureEstate(),
+              SizedBox(
+                height: 10,
+              ),
+              featureEstate(),
+              SizedBox(
+                height: 20,
               ),
               Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(left: 10),
                 child: Text(
-                  "Top Estate Location",
+                  "Your Leads",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
               Container(
-                height: 400,
+                height: 370,
                 child: itemDisplay(),
               ),
+              Container(
+                height: 190,
+                child: GridView.builder(
+                  itemCount: 2,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.all(0),
+                      child: Container(
+                        margin: EdgeInsets.all(7),
+                        padding: EdgeInsets.all(10),
+                        height: 250,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromRGBO(244, 244, 249, 1),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 85,
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  opacity: 1,
+                                  image: AssetImage(feature_data[index].image),
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.topCenter,
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                feature_data[index].title,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromRGBO(35, 73, 105, 1)),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.orange,
+                                  size: 15,
+                                ),
+                                Text(feature_data[index].rating),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.pin_drop,
+                                  size: 15,
+                                ),
+                                Text(feature_data[index].loc),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
               SizedBox(
-                height: 10,
+                height: 30,
               ),
             ],
           ),
@@ -209,7 +267,7 @@ class itemDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: 6,
+      itemCount: 4,
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (context, index) {

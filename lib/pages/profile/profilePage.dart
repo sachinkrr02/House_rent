@@ -78,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Container(
                     padding: EdgeInsets.all(10),
                     height: 80,
-                    width: 110,
+                    width: 150,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
@@ -104,33 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Container(
                     padding: EdgeInsets.all(10),
                     height: 80,
-                    width: 110,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          "12",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(37, 73, 105, 1),
-                          ),
-                        ),
-                        Text(
-                          "Sold",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    height: 80,
-                    width: 110,
+                    width: 150,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
@@ -158,32 +132,23 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                width: 500,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Color.fromRGBO(244, 244, 249, 1),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      "Transaction",
-                      style: TextStyle(
-                          color: Color.fromRGBO(37, 73, 105, 1), fontSize: 15),
-                    ),
-                    Text(
-                      "Listings",
-                      style: TextStyle(
-                          color: Color.fromRGBO(37, 73, 105, 1), fontSize: 15),
-                    ),
-                    Text(
-                      "Sold",
-                      style: TextStyle(
-                          color: Color.fromRGBO(37, 73, 105, 1), fontSize: 15),
-                    ),
-                  ],
+              Center(
+                child: Container(
+                  width: 500,
+                  alignment: Alignment.center,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Color.fromRGBO(244, 244, 249, 1),
+                  ),
+                  child: Text(
+                    "Listings",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color.fromRGBO(37, 73, 105, 1),
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ),
               Container(

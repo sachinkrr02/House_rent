@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:house/pages/homepage/home.dart';
 import 'package:house/pages/login/login.dart';
-
+import 'package:house/pages/login/otp.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -49,34 +49,8 @@ class _SignupPageState extends State<SignupPage> {
             height: 10,
           ),
           TextField(
-            controller: emailController,
             decoration: InputDecoration(
-              hintText: "Email",
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              prefixIcon: Icon(Icons.email_outlined),
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              hintText: "Password",
-              contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              prefixIcon: Icon(Icons.lock),
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Confirm Password",
+              hintText: "Phone No.",
               contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               prefixIcon: Icon(Icons.lock),
               border:
@@ -89,7 +63,7 @@ class _SignupPageState extends State<SignupPage> {
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+                  context, MaterialPageRoute(builder: (context) => OTP()));
             },
             child: Text(
               "Create Account",
