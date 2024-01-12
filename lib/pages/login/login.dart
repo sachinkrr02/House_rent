@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:house/pages/login/otp.dart';
 import 'package:house/pages/login/register.dart';
@@ -11,8 +14,28 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+
+  void sendOTP() async {
+    String phone = "+91" + phoneController.text.trim();
+
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: phone,
+        codeSent: (verificationId, resendToken) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => OTP(
+                        verificationId: verificationId,
+                      )));
+        },
+        verificationCompleted: (credential) {},
+        verificationFailed: (ex) {
+          log(ex.code.toString());
+        },
+        codeAutoRetrievalTimeout: (verificationId) {},
+        timeout: Duration(seconds: 30));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +60,7 @@ class _LoginpageState extends State<Loginpage> {
             height: 20,
           ),
           TextField(
-            controller: emailController,
+            controller: phoneController,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               hintText: "Phone No.",
@@ -72,8 +95,7 @@ class _LoginpageState extends State<Loginpage> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => OTP()));
+              sendOTP();
             },
             child: Text(
               "Sign In",
