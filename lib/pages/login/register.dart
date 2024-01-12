@@ -63,7 +63,7 @@ class _SignupPageState extends State<SignupPage> {
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => OTP()));
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
             child: Text(
               "Create Account",
