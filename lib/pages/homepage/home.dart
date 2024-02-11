@@ -4,6 +4,8 @@ import 'package:house/pages/homepage/featureEstate.dart';
 import 'package:house/pages/homepage/menuOptions.dart';
 import 'package:house/pages/homepage/models/featureEstate.dart';
 import 'package:house/pages/homepage/models/salesModel.dart';
+import 'package:house/pages/homepage/nearbyEstates.dart';
+import 'package:house/pages/homepage/newEstates.dart';
 import 'package:house/pages/homepage/sales.dart';
 import 'package:house/pages/homepage/toploctions..dart';
 import 'package:house/pages/propertyDetails/plans.dart';
@@ -192,6 +194,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+
               Container(
                 padding: EdgeInsets.only(left: 30),
                 child: Align(
@@ -201,10 +204,12 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontSize: 25),
                     )),
               ),
-              SizedBox(
-                height: 20,
-              ),
 
+              Divider(
+                height: 20.0,
+                thickness: 3.0,
+                color: Colors.blue,
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: TextField(
@@ -235,6 +240,12 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 10,
               ),
+
+              Divider(
+                height: 20.0,
+                thickness: 2.0,
+                color: Colors.grey,
+              ),
 // featured Estates
               Container(
                 alignment: Alignment.centerLeft,
@@ -247,10 +258,51 @@ class _HomePageState extends State<HomePage> {
                       color: Color.fromRGBO(35, 78, 105, 1)),
                 ),
               ),
-
               featureEstate(),
 
-              featureEstate(),
+              Divider(
+                height: 20.0,
+                thickness: 2.0,
+                color: Colors.grey,
+              ),
+
+// nearby estates
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  "Nearby Estates",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(35, 78, 105, 1)),
+                ),
+              ),
+              nearByEstates(),
+              Divider(
+                height: 20.0,
+                thickness: 2.0,
+                color: Colors.grey,
+              ),
+
+// top locations
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  "Top Locations",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(35, 78, 105, 1)),
+                ),
+              ),
+              topLocations(),
+              Divider(
+                height: 20.0,
+                thickness: 2.0,
+                color: Colors.grey,
+              ),
               SizedBox(
                 height: 20,
               ),
@@ -265,95 +317,18 @@ class _HomePageState extends State<HomePage> {
                       color: Color.fromRGBO(35, 78, 105, 1)),
                 ),
               ),
-              itemDisplay(),
-
+              newEstates(),
+              Divider(
+                height: 20.0,
+                thickness: 2.0,
+                color: Colors.grey,
+              ),
               SizedBox(
                 height: 30,
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class itemDisplay extends StatelessWidget {
-  const itemDisplay({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 550,
-      child: GridView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: 6,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(0),
-            child: Container(
-              margin: EdgeInsets.all(7),
-              padding: EdgeInsets.all(10),
-              height: 250,
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color.fromRGBO(244, 244, 249, 1),
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    height: 85,
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        opacity: 1,
-                        image: AssetImage(feature_data[index].image),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topCenter,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      feature_data[index].title,
-                      style: TextStyle(
-                          fontSize: 15, color: Color.fromRGBO(35, 73, 105, 1)),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.star,
-                        color: Colors.orange,
-                        size: 15,
-                      ),
-                      Text(feature_data[index].rating),
-                      SizedBox(
-                        width: 10,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.pin_drop,
-                        size: 15,
-                      ),
-                      Text(feature_data[index].loc),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          );
-        },
       ),
     );
   }

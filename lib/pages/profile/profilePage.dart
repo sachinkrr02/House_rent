@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:house/pages/homepage/home.dart';
+import 'package:house/pages/homepage/newEstates.dart';
 import 'package:house/pages/profile/editProfile.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -151,7 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
-              itemDisplay()
+              newEstates(),
             ],
           ),
         ),
