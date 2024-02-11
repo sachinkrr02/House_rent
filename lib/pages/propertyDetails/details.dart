@@ -55,7 +55,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(28),
                         child: Image.asset(
-                          'assets/houseee.jpg',
+                          'assets/housee.jpg',
                           width: 370,
                           height: 449,
                           fit: BoxFit.cover,
@@ -116,7 +116,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Image.asset(
-                                'house.jpg',
+                                'login.png',
+                                scale: 1,
                                 width: 300,
                                 height: 200,
                                 fit: BoxFit.cover,
@@ -936,6 +937,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   onPressed: () {},
                   child: Text("View all reviews"),
                   style: ButtonStyle(),
+                ),
+                SizedBox(
+                  height: 20,
                 )
               ],
             ),

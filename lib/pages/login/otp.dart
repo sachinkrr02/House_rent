@@ -57,8 +57,23 @@ class _OTPState extends State<OTP> {
             TextField(
               controller: otpController,
               maxLength: 6,
-              decoration:
-                  InputDecoration(labelText: "6-Digit OTP", counterText: ""),
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.number,
+              style: TextStyle(fontSize: 24, letterSpacing: 24.0),
+              decoration: InputDecoration(
+                counterText: "",
+                contentPadding: EdgeInsets.symmetric(vertical: 16),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: BorderSide(color: Colors.lightGreen, width: 2.0),
+                ),
+                hintText:
+                    "* * * * * *", // Show dots or asterisks as placeholders
+                hintStyle: TextStyle(fontSize: 24, letterSpacing: 24.0),
+              ),
             ),
             const SizedBox(height: 20.0),
             SizedBox(

@@ -14,7 +14,7 @@ class Sales extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
-      child: Expanded(
+      child: Container(
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
