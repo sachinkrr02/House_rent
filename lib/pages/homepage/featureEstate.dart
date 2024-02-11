@@ -10,29 +10,29 @@ class featureEstate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 190,
       child: Container(
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: 3,
           itemBuilder: (BuildContext context, int index) => Container(
-            width: 285,
+            width: 300,
             child: Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(1),
               ),
               child: Container(
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: [
                     Container(
                       padding: EdgeInsets.all(10),
-                      height: 150,
-                      width: 120,
+                      height: 180,
+                      width: 150,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.lightBlue,
@@ -79,9 +79,9 @@ class featureEstate extends StatelessWidget {
                                       builder: (context) => HomePageWidget()));
                             },
                             child: Text(
-                              "Apartments",
+                              feature_data[index].type,
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 9),
+                                  TextStyle(color: Colors.white, fontSize: 12),
                             ),
                           )
                         ],
