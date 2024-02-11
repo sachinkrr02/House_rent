@@ -151,10 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
-              Container(
-                height: 410,
-                child: itemDisplay(),
-              ),
+              itemDisplay()
             ],
           ),
         ),
