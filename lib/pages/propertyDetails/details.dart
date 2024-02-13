@@ -3,11 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:house/pages/homepage/nearbyEstates.dart';
 import 'package:mapbox_search/mapbox_search.dart';
 import 'package:provider/provider.dart';
-
-//import 'home_page_model.dart';
-//export 'home_page_model.dart';
 
 const LatLng currentLocation = LatLng(25.1193, 55.3773);
 
@@ -19,20 +17,17 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  //late HomePageModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  String value = "Location";
 
   @override
   void initState() {
     super.initState();
-    //_model = createModel(context, () => HomePageModel());
   }
 
   @override
   void dispose() {
-    // _model.dispose();
-
     super.dispose();
   }
 
@@ -40,26 +35,46 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: SafeArea(
-            top: true,
+        body: SafeArea(
+          child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Stack(
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
+                      padding: EdgeInsets.only(left: 12),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(28),
                         child: Image.asset(
-                          'assets/housee.jpg',
+                          'assets/house/build6.jpg',
                           width: 370,
                           height: 449,
                           fit: BoxFit.cover,
                         ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleAvatar(
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: Icon(Icons.arrow_back)),
+                          ),
+                          CircleAvatar(
+                            backgroundColor: Colors.lightGreen,
+                            child: Icon(
+                              Icons.favorite,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     Padding(
@@ -69,13 +84,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         height: 70,
                         decoration: BoxDecoration(
                           color: Colors.white,
+                          border: Border.all(color: Colors.white, width: 3),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(16),
                           child: Image.asset(
-                            'assets/house.jpg',
-                            width: 300,
+                            'assets/house/build2.jpg',
+                            width: 200,
                             height: 200,
                             fit: BoxFit.cover,
                           ),
@@ -89,13 +105,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         height: 70,
                         decoration: BoxDecoration(
                           color: Colors.white,
+                          border: Border.all(color: Colors.white, width: 3),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(16),
                           child: Image.asset(
-                            'assets/img.png',
-                            width: 300,
+                            'assets/house/build3.jpg',
+                            width: 200,
                             height: 200,
                             fit: BoxFit.cover,
                           ),
@@ -109,25 +126,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         height: 70,
                         decoration: BoxDecoration(
                           color: Colors.white,
+                          border: Border.all(color: Colors.white, width: 3),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Stack(
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(16),
                               child: Image.asset(
-                                'login.png',
+                                'assets/house/build5.jpg',
                                 scale: 1,
-                                width: 300,
+                                width: 200,
                                 height: 200,
                                 fit: BoxFit.cover,
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: Alignment.center,
                               child: Text(
                                 '+3',
                                 style: TextStyle(
+                                  fontSize: 20,
                                   fontFamily: 'Readex Pro',
                                   color: Colors.white,
                                 ),
@@ -143,7 +162,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         width: 80,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: Color(0xFF253150),
+                          color: Color.fromRGBO(35, 78, 105, 1),
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Row(
@@ -156,7 +175,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                 child: Icon(
                                   Icons.star_rounded,
-                                  color: Colors.black,
+                                  color: Colors.yellow,
                                   size: 20,
                                 ),
                               ),
@@ -165,7 +184,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                               child: Text(
-                                '4.9',
+                                '4.2',
                                 style: TextStyle(
                                   fontFamily: 'Readex Pro',
                                   color: Colors.white,
@@ -179,10 +198,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(110, 400, 0, 0),
                       child: Container(
-                        width: 80,
+                        width: 100,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: Color(0xFF253150),
+                          color: Color.fromRGBO(35, 78, 105, 1),
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Align(
@@ -190,6 +209,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           child: Text(
                             'Apartment',
                             style: TextStyle(
+                              fontSize: 13,
                               fontFamily: 'Readex Pro',
                               color: Colors.white,
                             ),
@@ -197,62 +217,58 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 20, 0, 0),
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFBBC7DA),
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0, 0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.arrowLeft,
-                                  color: Colors.white,
-                                  size: 15,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                  child: Text(
-                    'Wings Tower                             \$220',
-                    style: TextStyle(),
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Wings Tower",
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Color.fromRGBO(35, 78, 105, 1),
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        "\$ 220",
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Color.fromRGBO(35, 78, 105, 1),
+                            fontWeight: FontWeight.w500),
+                      )
+                    ],
                   ),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                      child: Icon(
-                        Icons.location_pin,
-                        color: Colors.grey,
-                        size: 24,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 0, 20, 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_pin,
+                            size: 16,
+                            color: Color.fromRGBO(35, 78, 105, 1),
+                          ),
+                          Text(
+                            "Jakarta,Indonesia",
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Color.fromRGBO(35, 78, 105, 1)),
+                          ),
+                        ],
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                      child: Text(
-                        'Jakarta, Indonesia                               per month',
-                        style: TextStyle(),
-                      ),
-                    ),
-                  ],
+                      Text(
+                        "per month",
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Color.fromRGBO(35, 78, 105, 1)),
+                      )
+                    ],
+                  ),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -280,7 +296,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       child: ElevatedButton(
                         onPressed: () {},
                         child: Text(
-                          "Rent",
+                          "Buy",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
@@ -300,12 +316,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Text(
-                            '360',
-                            style: TextStyle(),
-                          ),
-                        ),
+                            alignment: AlignmentDirectional(0, 0),
+                            child: Icon(Icons.view_carousel)),
                       ),
                     ),
                   ],
@@ -320,7 +332,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                   child: Container(
-                    width: 341,
+                    width: 360,
                     height: 70,
                     decoration: BoxDecoration(
                       color: Color(0x0E0E3E74),
@@ -344,41 +356,37 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                           ),
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                              child: Text(
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
                                 'Anderson',
-                                style: TextStyle(),
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromRGBO(35, 78, 105, 1)),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                              child: Text(
+                              Text(
                                 'Real Estate Agent',
                                 style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xFF58585C),
-                                ),
+                                    fontFamily: 'Readex Pro',
+                                    color: Color.fromRGBO(35, 78, 105, 1)),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         Align(
                           alignment: AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(120, 0, 0, 0),
-                            child: Icon(
-                              Icons.message_outlined,
-                              color: Colors.grey,
-                              size: 24,
-                            ),
-                          ),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(120, 0, 0, 0),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.message_outlined,
+                                      color: Color.fromRGBO(35, 78, 105, 1)))),
                         ),
                       ],
                     ),
@@ -408,7 +416,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       10, 0, 0, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.bed,
-                                    color: Color(0xFF51A767),
+                                    color: Colors.lightGreen,
                                     size: 20,
                                   ),
                                 ),
@@ -420,9 +428,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     child: Text(
                                       '2 Bedroom',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xFF58585C),
-                                      ),
+                                          fontFamily: 'Readex Pro',
+                                          color:
+                                              Color.fromRGBO(35, 78, 105, 1)),
                                     ),
                                   ),
                                 ),
@@ -447,7 +455,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       10, 0, 0, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.bath,
-                                    color: Color(0xFF51A767),
+                                    color: Colors.lightGreen,
                                     size: 20,
                                   ),
                                 ),
@@ -486,7 +494,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       10, 0, 0, 0),
                                   child: FaIcon(
                                     FontAwesomeIcons.house,
-                                    color: Color(0xFF51A767),
+                                    color: Colors.lightGreen,
                                     size: 20,
                                   ),
                                 ),
@@ -496,7 +504,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 0, 0),
                                     child: Text(
-                                      'House',
+                                      'Balcony',
                                       style: TextStyle(
                                         fontFamily: 'Readex Pro',
                                         color: Color(0xFF58585C),
@@ -519,25 +527,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     child: Text(
                       'Location & Public Facilities',
                       style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromRGBO(35, 78, 105, 1),
                         fontFamily: 'Outfit',
-                        fontSize: 20,
+                        fontSize: 21,
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                      child: Icon(
-                        Icons.share_location_rounded,
-                        color: Color(0xFFC7C1C1),
-                        size: 40,
+                      padding: const EdgeInsets.only(left: 15),
+                      child: CircleAvatar(
+                        radius: 20,
+                        child: Icon(
+                          Icons.place_outlined,
+                          size: 17,
+                        ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 5, 0, 0),
+                      padding: EdgeInsets.only(left: 20),
                       child: Text(
                         'St. Cikoko Timur, Kec, Pancoran, Jakarta\nSelatan, Indonesia 12770',
                         style: TextStyle(
@@ -551,21 +566,47 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      fillColor: Colors.white70,
-                      filled: true,
-                      suffixIcon: Icon(Icons.arrow_drop_down),
-                      hintText: "2.5 Km from your location",
-                      contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      prefixIcon: Icon(Icons.pin_drop),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                Container(
+                  width: 350,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey, width: 1),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.place),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        width: 320,
+                        child: DropdownButton<String>(
+                          hint: value == ""
+                              ? Text('location')
+                              : Text(
+                                  value,
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                          isExpanded: true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              value = newValue.toString();
+                            });
+                          },
+                          items: <String>[
+                            '2Km From location',
+                            '3Km From location',
+                            '5Km From location',
+                          ].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                   child: Row(
@@ -664,16 +705,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         'Cost of living',
                         style: TextStyle(
                             fontFamily: 'Readex Pro',
-                            color: Colors.blue,
-                            fontSize: 20,
+                            color: Color.fromRGBO(35, 78, 105, 1),
+                            fontSize: 21,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         'view details',
                         style: TextStyle(
-                          fontFamily: 'Readex Pro',
-                          color: Color(0xFF254258),
-                        ),
+                            fontSize: 12,
+                            fontFamily: 'Readex Pro',
+                            color: Color.fromRGBO(35, 78, 105, 1)),
                       ),
                     ],
                   ),
@@ -695,7 +736,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       Row(
                         children: [
                           Text(
-                            "Rs.830",
+                            "\$ 830",
                             style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
@@ -721,19 +762,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 SizedBox(
                   height: 10,
                 ),
+
+                //reviews
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Reviews",
-                      style:
-                          TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontFamily: 'Readex Pro',
+                          color: Color.fromRGBO(35, 78, 105, 1),
+                          fontSize: 21,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                //reviews
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
                   margin: EdgeInsets.only(left: 10, right: 10),
                   height: 100,
@@ -757,44 +804,48 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           color: Colors.yellow,
                         ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 14,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 14,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 14,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 14,
-                              ),
-                              Icon(
-                                Icons.star_half,
-                                color: Colors.yellow,
-                                size: 14,
-                              ),
-                              Text("4.9"),
-                            ],
-                          ),
-                          Text(
-                            "From 112 reviewers",
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        ],
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.yellow,
+                                  size: 14,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.yellow,
+                                  size: 14,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.yellow,
+                                  size: 14,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.yellow,
+                                  size: 14,
+                                ),
+                                Icon(
+                                  Icons.star_half,
+                                  color: Colors.yellow,
+                                  size: 14,
+                                ),
+                                Text("4.9"),
+                              ],
+                            ),
+                            Text(
+                              "From 112 reviewers",
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.only(right: 20),
@@ -806,7 +857,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 SizedBox(
                   height: 10,
                 ),
-                //people reviews
+
                 Container(
                   margin: EdgeInsets.only(left: 10, right: 10),
                   height: 100,
@@ -933,14 +984,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 SizedBox(
                   height: 10,
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("View all reviews"),
-                  style: ButtonStyle(),
+                Container(
+                  padding: EdgeInsets.only(left: 15, right: 15),
+                  width: 400,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("View all reviews"),
+                    style: ButtonStyle(),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
-                )
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Nearby From this location",
+                      style: TextStyle(
+                          fontFamily: 'Readex Pro',
+                          color: Color.fromRGBO(35, 78, 105, 1),
+                          fontSize: 21,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                nearByEstates(),
               ],
             ),
           ),
