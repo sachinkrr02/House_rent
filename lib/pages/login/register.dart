@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:house/pages/homepage/home.dart';
 import 'package:house/pages/login/login.dart';
@@ -20,6 +21,7 @@ class _SignupPageState extends State<SignupPage> {
   final databaseRef = FirebaseDatabase.instance.ref('UserData');
 
   String value = "Choose Your Role";
+  bool _isLoading = false;
 
   /// password
   bool _obscured = false;
@@ -32,6 +34,88 @@ class _SignupPageState extends State<SignupPage> {
       textFieldFocusNode.canRequestFocus =
           false; // Prevents focus if tap on eye
     });
+  }
+
+//snackbar
+  void _showErrorSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(color: Colors.white),
+        ),
+        duration: Duration(seconds: 5),
+        backgroundColor: Colors.lightGreen,
+        action: SnackBarAction(
+          label: 'Dismiss',
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+
+  //creating user
+  Future<void> CreateAcc() async {
+    var emailAddress = emailController.text.trim();
+    var password = passwordController.text.trim();
+    var name = nameController.text.trim();
+    var phone = phoneController.text.trim();
+
+    if (emailAddress.isEmpty ||
+        password.isEmpty ||
+        name.isEmpty ||
+        phone.isEmpty) {
+      _showErrorSnackbar('All fields must be filled.');
+      return;
+    }
+
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailAddress,
+        password: password,
+      );
+      if (credential != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Account created successfully!",
+              style: TextStyle(color: Colors.white),
+            ),
+            duration: Duration(seconds: 3),
+            backgroundColor: Colors.lightGreen,
+            action: SnackBarAction(
+              label: 'Dismiss',
+              textColor: Colors.white,
+              onPressed: () {},
+            ),
+          ),
+        );
+        databaseRef
+            .child(DateTime.now().microsecondsSinceEpoch.toString())
+            .set({
+          'id': DateTime.now().microsecondsSinceEpoch.toString(),
+          'Name': nameController.text,
+          'Email': emailController.text,
+          'Phone': phoneController.text,
+          'password': passwordController.text,
+        });
+        Navigator.pop(context);
+      }
+    } on FirebaseAuthException catch (e) {
+      // Handle FirebaseAuthException
+    } catch (e) {
+      // Handle other exceptions
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -161,52 +245,55 @@ class _SignupPageState extends State<SignupPage> {
                 decoration: BoxDecoration(
                     color: Colors.lightGreen,
                     borderRadius: BorderRadius.circular(10.0)),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (emailController != '' &&
-                        nameController != '' &&
-                        passwordController != '' &&
-                        phoneController != '') {
-                      databaseRef
-                          .child(
-                              DateTime.now().microsecondsSinceEpoch.toString())
-                          .set({
-                        'id': DateTime.now().microsecondsSinceEpoch.toString(),
-                        'Name': nameController.text,
-                        'Email': emailController.text,
-                        'Phone': phoneController.text,
-                        'password': passwordController.text,
-                      });
-                      Navigator.pop(context);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            "Select Your Role First",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          duration: Duration(seconds: 5),
-                          backgroundColor: Colors.lightGreen,
-                          action: SnackBarAction(
-                            label: 'Dismiss',
-                            textColor: Colors.white,
-                            onPressed: () {},
-                          ),
+                child: _isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : ElevatedButton(
+                        onPressed: () {
+                          CreateAcc();
+                          // if (emailController != '' &&
+                          //     nameController != '' &&
+                          //     passwordController != '' &&
+                          //     phoneController != '') {
+                          //   databaseRef
+                          //       .child(
+                          //           DateTime.now().microsecondsSinceEpoch.toString())
+                          //       .set({
+                          //     'id': DateTime.now().microsecondsSinceEpoch.toString(),
+                          //     'Name': nameController.text,
+                          //     'Email': emailController.text,
+                          //     'Phone': phoneController.text,
+                          //     'password': passwordController.text,
+                          //   });
+                          //   Navigator.pop(context);
+                          // } else {
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     SnackBar(
+                          //       content: Text(
+                          //         "Select Your Role First",
+                          //         style: TextStyle(color: Colors.white),
+                          //       ),
+                          //       duration: Duration(seconds: 5),
+                          //       backgroundColor: Colors.lightGreen,
+                          //       action: SnackBarAction(
+                          //         label: 'Dismiss',
+                          //         textColor: Colors.white,
+                          //         onPressed: () {},
+                          //       ),
+                          //     ),
+                          //   );
+                          // }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            shadowColor: Colors.transparent),
+                        child: const Text(
+                          'Sign-Up',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
                         ),
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent),
-                  child: const Text(
-                    'Sign-Up',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
+                      ),
               ),
               SizedBox(
                 height: 20,
