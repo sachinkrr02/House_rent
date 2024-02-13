@@ -19,38 +19,10 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
-  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String value = "Choose Your Role";
-
-  // void sendOTP() async {
-  //   String phone = "+91" + phoneController.text.trim();
-  //   try {
-  //     await FirebaseAuth.instance.verifyPhoneNumber(
-  //       phoneNumber: phone,
-  //       verificationFailed: (ex) {
-  //         log(ex.code.toString());
-  //         _showErrorSnackbar("Error: ${ex.code}");
-  //       },
-  //       codeSent: (verificationId, resendToken) {
-  //         Navigator.push(
-  //           context,
-  //           MaterialPageRoute(
-  //             builder: (context) => OTP(
-  //               verificationId: verificationId,
-  //             ),
-  //           ),
-  //         );
-  //       },
-  //       verificationCompleted: (credential) {},
-  //       codeAutoRetrievalTimeout: (verificationId) {},
-  //       timeout: Duration(seconds: 30),
-  //     );
-  //   } catch (e) {
-  //     _showErrorSnackbar("Unexpected error occurred");
-  //     log("Unexpected error: $e");
-  //   }
-  // }
+  bool isLoading = false;
 
   void _showErrorSnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -63,53 +35,60 @@ class _LoginpageState extends State<Loginpage> {
         backgroundColor: Colors.lightGreen,
         action: SnackBarAction(
           label: 'Dismiss',
-          onPressed: () {
-            // Add any action here if needed
-          },
+          textColor: Colors.white,
+          onPressed: () {},
         ),
       ),
     );
   }
 
-  /// password
   bool _obscured = false;
   final textFieldFocusNode = FocusNode();
   void _toggleObscured() {
     setState(() {
       _obscured = !_obscured;
-      if (textFieldFocusNode.hasPrimaryFocus)
-        return; // If focus is on text field, dont unfocus
-      textFieldFocusNode.canRequestFocus =
-          false; // Prevents focus if tap on eye
+      if (textFieldFocusNode.hasPrimaryFocus) return;
+      textFieldFocusNode.canRequestFocus = false;
     });
   }
 
-  void check() {
-    if (value == "Agent") {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AgentHomePage()));
-    } else if (value == "Buyer") {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
-    } else if (value == "Backend Team") {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BackendHomePage()));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            "Select Your Role First",
-            style: TextStyle(color: Colors.white),
-          ),
-          duration: Duration(seconds: 5),
-          backgroundColor: Colors.lightGreen,
-          action: SnackBarAction(
-            label: 'Dismiss',
-            textColor: Colors.white,
-            onPressed: () {},
-          ),
-        ),
-      );
+  void signin() async {
+    var emailAddress = emailController.text.trim();
+    var password = passwordController.text.trim();
+
+    if (emailAddress.isEmpty || password.isEmpty) {
+      _showErrorSnackbar('Email and password are required.');
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: emailAddress, password: password);
+
+      if (credential.user != null) {
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.popUntil(context, (route) => route.isFirst);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        });
+      }
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      if (e.code == 'user-not-found') {
+        _showErrorSnackbar('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        _showErrorSnackbar('Wrong password provided for that user.');
+      } else {
+        _showErrorSnackbar('Invalid Credentials');
+      }
     }
   }
 
@@ -133,13 +112,15 @@ class _LoginpageState extends State<Loginpage> {
                 height: 20,
               ),
               TextField(
+                controller: emailController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                  hintText: "Username",
+                  hintText: "Email",
                   contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   prefixIcon: Icon(Icons.person_2_outlined),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
               SizedBox(
@@ -178,8 +159,9 @@ class _LoginpageState extends State<Loginpage> {
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 width: double.maxFinite,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey, width: 1)),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey, width: 1),
+                ),
                 child: DropdownButton<String>(
                   hint: value == ""
                       ? Text('Choose Your Role')
@@ -223,23 +205,28 @@ class _LoginpageState extends State<Loginpage> {
                 height: 50,
                 width: 350,
                 decoration: BoxDecoration(
-                    color: Colors.lightGreen,
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: ElevatedButton(
-                  onPressed: () {
-                    check();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent),
-                  child: const Text(
-                    'Sign-In',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
+                  color: Colors.lightGreen,
+                  borderRadius: BorderRadius.circular(10),
                 ),
+                child: isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : ElevatedButton(
+                        onPressed: () {
+                          signin();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          shadowColor: Colors.transparent,
+                        ),
+                        child: const Text(
+                          'Sign-In',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
               ),
               SizedBox(
                 height: 25,
