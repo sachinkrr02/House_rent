@@ -100,7 +100,7 @@ class _LoginpageState extends State<Loginpage> {
         child: SafeArea(
           child: Column(
             children: [
-              Image.asset("assets/hosue/build1.jpg"),
+              Image.asset("assets/login.png"),
               Align(
                 alignment: Alignment.center,
                 child: Text(
