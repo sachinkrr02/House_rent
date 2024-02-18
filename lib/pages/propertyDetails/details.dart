@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:house/pages/homepage/nearbyEstates.dart';
+import 'package:house/pages/transaction/buyProp.dart';
+import 'package:house/pages/transaction/rentProp.dart';
 import 'package:mapbox_search/mapbox_search.dart';
 import 'package:provider/provider.dart';
 
@@ -278,7 +280,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => rentProp()));
+                          },
                           child: Text(
                             "Rent",
                             style: TextStyle(
@@ -294,7 +301,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => buyProp()));
+                        },
                         child: Text(
                           "Buy",
                           style: TextStyle(
