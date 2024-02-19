@@ -18,8 +18,9 @@ class _editProfileState extends State<editProfile> {
         leading: CircleAvatar(
           child: IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (Context) => ProfilePage()));
+                Navigator.popUntil(context, (route) => route.isFirst);
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()));
               },
               icon: Icon(Icons.arrow_back)),
         ),

@@ -32,10 +32,10 @@ class _bnbState extends State<bnb> {
             onPressed: () {
               setState(() {
                 pageIndex = 0;
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => AgentHomePage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AgentHomePage()),
+                );
               });
             },
             icon: pageIndex == 0
@@ -75,10 +75,10 @@ class _bnbState extends State<bnb> {
             onPressed: () {
               setState(() {
                 pageIndex = 2;
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => ProfilePage()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
               });
             },
             icon: pageIndex == 2

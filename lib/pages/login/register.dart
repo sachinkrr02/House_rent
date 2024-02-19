@@ -211,7 +211,13 @@ class _SignupPageState extends State<SignupPage> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.grey, width: 1)),
-                child: DropdownButton<String>(
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    errorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
+                  ),
                   hint: value == "Choose Your Role"
                       ? Text('Choose Your Role')
                       : Text(

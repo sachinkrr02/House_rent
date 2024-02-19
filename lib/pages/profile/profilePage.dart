@@ -27,7 +27,6 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(15),
         child: SafeArea(
           child: Column(
             children: [

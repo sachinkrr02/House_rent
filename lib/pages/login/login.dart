@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:house/pages/homepage/agentsHome.dart';
 import 'package:house/pages/homepage/backendHome.dart';
 import 'package:house/pages/homepage/home.dart';
+import 'package:house/pages/login/forgotPass.dart';
 import 'package:house/pages/login/otp.dart';
 import 'package:house/pages/login/register.dart';
+import 'package:house/pages/login/resetPass.dart';
 import 'package:house/pages/profile/profilePage.dart';
 import 'package:house/pages/propertyDetails/details.dart';
 import 'package:house/pages/propertyDetails/plans.dart';
@@ -162,7 +164,13 @@ class _LoginpageState extends State<Loginpage> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.grey, width: 1),
                 ),
-                child: DropdownButton<String>(
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    errorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
+                  ),
                   hint: value == ""
                       ? Text('Choose Your Role')
                       : Text(
@@ -190,7 +198,12 @@ class _LoginpageState extends State<Loginpage> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => forgotPassword()));
+                  },
                   child: const Text(
                     "Forgot Password",
                     style: TextStyle(

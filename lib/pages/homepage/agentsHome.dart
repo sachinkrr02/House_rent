@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:house/pages/homepage/addListing.dart';
 import 'package:house/pages/homepage/featureEstate.dart';
+import 'package:house/pages/homepage/home.dart';
 import 'package:house/pages/homepage/menuOptions.dart';
 import 'package:house/pages/homepage/models/featureEstate.dart';
 import 'package:house/pages/homepage/models/salesModel.dart';
@@ -22,7 +23,7 @@ class _AgentHomePageState extends State<AgentHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(30.0),
+        preferredSize: Size.fromHeight(50.0),
         child: AppBar(
           actions: [
             Material(
@@ -35,13 +36,14 @@ class _AgentHomePageState extends State<AgentHomePage> {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(100.0),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Plans()));
+                    Navigator.popUntil(context, (route) => route.isFirst);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   child: Padding(
                     padding: EdgeInsets.all(5.0),
                     child: Icon(
-                      Icons.notification_add,
+                      Icons.home,
                       size: 22.0,
                       color: Color.fromRGBO(35, 78, 105, 1),
                     ),
