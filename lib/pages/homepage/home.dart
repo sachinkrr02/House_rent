@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:house/pages/homepage/featureEstate.dart';
@@ -21,6 +22,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void logOut() async {
+    await FirebaseAuth.instance.signOut();
+
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => SplashScreen()));
+  }
+
   String value = "Location";
   @override
   Widget build(BuildContext context) {
@@ -63,7 +72,13 @@ class _HomePageState extends State<HomePage> {
                               Container(
                                 padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                                 width: 120,
-                                child: DropdownButton<String>(
+                                child: DropdownButtonFormField<String>(
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red),
+                                    ),
+                                  ),
                                   alignment: Alignment.centerLeft,
                                   dropdownColor: Colors.white,
                                   hint: value == ""
@@ -151,15 +166,12 @@ class _HomePageState extends State<HomePage> {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(100.0),
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SplashScreen()));
+                                logOut();
                               },
                               child: Padding(
                                 padding: EdgeInsets.all(5.0),
                                 child: Icon(
-                                  Icons.person,
+                                  Icons.logout_outlined,
                                   size: 22,
                                   color: Color.fromRGBO(35, 78, 105, 1),
                                 ),
